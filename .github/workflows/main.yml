@@ -1,23 +1,23 @@
 name: "Main"
 
 on:
-  push:
-    branches:
-      - master
+    push:
+        branches:
+            - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v1
 
-      - uses: ./
-        id: diawi
-        with:
-          token: ${{ secrets.DIAWI_TOKEN }}
-          file: ./example.apk
-          comment: 'Uploaded from Github Action'
-      
-      - name: Output
-        run: echo "Diawi URL = ${{ steps.diawi.outputs['url'] }}"
+            - uses: ./
+              id: gofile
+              with:
+                  token: ${{ secrets.GOFILE_TOKEN }}
+                  file: ./example.apk
+                  comment: "Uploaded from Github Action"
+
+            - name: Output
+              run: echo "Gofile URL = ${{ steps.gofile.outputs['url'] }}"

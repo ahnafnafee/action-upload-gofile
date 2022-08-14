@@ -10,8 +10,12 @@
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2018
+        "ecmaVersion": 2020
     },
     "rules": {
+        "no-unused-vars": [
+            "warn",
+            { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+        ]
     }
 }
