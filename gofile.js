@@ -76,7 +76,7 @@ Gofile.prototype.poll = function (pollCount) {
             function (response) {
                 try {
                     switch (response.data.status) {
-                        case 2000:
+                        case "ok":
                             if (response.data.link) {
                                 const DOWNLOAD_URL =
                                     LINK_PREFIX +
