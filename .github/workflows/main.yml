@@ -10,14 +10,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v1
+              uses: actions/checkout@v2
 
-            - uses: ./
+            - name: Upload File
+              uses: ./
               id: gofile
               with:
                   token: ${{ secrets.GOFILE_TOKEN }}
                   file: ./example.apk
-                  comment: "Uploaded from Github Action"
 
             - name: Output
               run: echo "Gofile URL = ${{ steps.gofile.outputs['url'] }}"
