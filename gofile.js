@@ -48,8 +48,7 @@ Gofile.prototype.execute = async function () {
         }
 
         const config = {
-            headers:
-                data.getHeaders() /* { 'Content-Type': 'multipart/form-data' } */,
+            headers: data.getHeaders(),
             maxContentLength: Infinity,
             maxBodyLength: Infinity,
         };
