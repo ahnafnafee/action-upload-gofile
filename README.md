@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://gofile.io/">
-    <img alt="Player 2 Logo" src="assets/gofile-logo.png" height="auto" width="200" style="border-radius:20%">
+    <img alt="Gofile.io Logo" src="assets/gofile-logo.png" height="auto" width="200" style="border-radius:20%">
   </a>
 </p>
 
