@@ -1,9 +1,9 @@
-name: "Main"
+name: "action-upload-gofile"
 
 on:
     push:
         branches:
-            - master
+            - main
 
 jobs:
     build:
