@@ -11,7 +11,7 @@
 
 <div align="center">
   <a href="https://github.com/ahnafnafee/action-upload-gofile/actions/workflows/main.yml">
-		<img src="https://github.com/ahnafnafee/action-upload-gofile/actions/workflows/main.yml/badge.svg"/>
+		<img src="https://github.com/ahnafnafee/action-upload-gofile/actions/workflows/main.yml/badge.svg?branch=main"/>
 	</a>
 </div>
 
