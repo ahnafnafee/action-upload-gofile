@@ -6,7 +6,7 @@ const EventEmitter = require("events").EventEmitter;
 
 const UPLOAD_URL = "https://store1.gofile.io/uploadFile";
 const LINK_PREFIX = "https://store1.gofile.io/download/";
-const QR_URL = "https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=";
+const QR_API = "https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=";
 const POLL_MAX_COUNT = 10;
 const POLL_INTERVAL = 2;
 
@@ -29,7 +29,6 @@ const Gofile = function (parameters) {
 
     // Create the required form fields
     this.formData = {
-        token: this.token,
         file: fs.createReadStream(this.path),
     };
 
@@ -55,9 +54,9 @@ Gofile.prototype.execute = async function () {
             maxBodyLength: Infinity,
         };
 
-        const response = await axios.post(UPLOAD_URL, data, config);
+        this.response = await axios.post(UPLOAD_URL, data, config);
 
-        this.job = response.data.job;
+        this.job = this.response.data.job;
 
         this.poll.bind(this)();
     } catch (error) {
@@ -73,22 +72,20 @@ Gofile.prototype.poll = function (pollCount) {
 
     sleep(POLL_INTERVAL)
         .then(
-            function (response) {
+            function () {
                 try {
-                    switch (response.data.status) {
-                        case "ok":
-                            if (response.data.link) {
+                    switch (this.response.status) {
+                        case 200:
+                            if (this.response.data) {
                                 const DOWNLOAD_URL =
                                     LINK_PREFIX +
-                                    response.data.fileId +
+                                    this.response.data.data.fileId +
                                     "/" +
-                                    response.data.fileName;
+                                    this.response.data.data.fileName;
 
-                                this.emit(
-                                    "complete",
-                                    DOWNLOAD_URL,
-                                    QR_URL + DOWNLOAD_URL
-                                );
+                                const QR_URL = QR_API + DOWNLOAD_URL;
+
+                                this.emit("complete", DOWNLOAD_URL, QR_URL);
                             } else {
                                 this.emit(
                                     "error",
@@ -106,7 +103,7 @@ Gofile.prototype.poll = function (pollCount) {
                                 "error",
                                 new Error(
                                     "Error in status response - " +
-                                        response.data.message
+                                        this.response.data.message
                                 )
                             );
                             return;

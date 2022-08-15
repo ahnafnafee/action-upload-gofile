@@ -17,7 +17,9 @@ jobs:
               id: gofile
               with:
                   token: ${{ secrets.GOFILE_TOKEN }}
-                  file: ./example.apk
+                  file: ./example.webp
 
             - name: Output
-              run: echo "Gofile URL = ${{ steps.gofile.outputs['url'] }}"
+              run: |
+                  echo "Gofile URL = ${{ steps.gofile.outputs.url }}" 
+                  echo "Gofile QR Code = ${{ steps.gofile.outputs.qrcode }}"

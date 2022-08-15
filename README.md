@@ -45,7 +45,7 @@ The following are _required_ as `step.env` keys
 uses: ahnafnafee/action-upload-gofile@v1
 with:
     token: ${{ secrets.GOFILE_TOKEN }}
-    file: ./example.apk
+    file: ./example.webp
 ```
 
 ## Disclaimer
