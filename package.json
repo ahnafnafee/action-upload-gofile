@@ -1,11 +1,13 @@
 {
     "name": "action-upload-gofile",
-    "version": "1",
+    "version": "2",
     "description": "📦 GitHub Action for uploading files to Gofile",
     "main": "index.js",
     "scripts": {
-        "lint": "eslint index.js",
-        "test": "eslint index.js && jest"
+        "lint": "eslint .",
+        "prepare": "ncc build index.js -o dist --source-map --license licenses.txt",
+        "test": "jest",
+        "all": "npm run lint && npm run prepare && npm run test"
     },
     "repository": {
         "type": "git",
@@ -37,7 +39,8 @@
         "path": "0.12.7"
     },
     "devDependencies": {
+        "@vercel/ncc": "^0.31.1",
         "eslint": "^8.18.0",
-        "jest": "^28.1.1"
+        "jest": "^27.5.1"
     }
 }
