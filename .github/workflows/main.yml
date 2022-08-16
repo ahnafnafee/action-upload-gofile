@@ -6,7 +6,7 @@ on:
             - main
 
 jobs:
-    build:
+    action-root-build:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -14,6 +14,25 @@ jobs:
 
             - name: Upload File
               uses: ./
+              id: gofile
+              with:
+                  token: ${{ secrets.GOFILE_TOKEN }}
+                  file: ./example.webp
+
+            - name: Output
+              run: |
+                  echo "Gofile URL = ${{ steps.gofile.outputs.url }}" 
+                  echo "Gofile QR Code = ${{ steps.gofile.outputs.qrcode }}"
+
+    action-main-build:
+        needs: action-root-build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Upload File
+              uses: ahnafnafee/action-upload-gofile@v2
               id: gofile
               with:
                   token: ${{ secrets.GOFILE_TOKEN }}
