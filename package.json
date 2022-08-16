@@ -1,6 +1,6 @@
 {
     "name": "action-upload-gofile",
-    "version": "2",
+    "version": "2.0.1",
     "description": "📦 GitHub Action for uploading files to Gofile",
     "main": "index.js",
     "scripts": {

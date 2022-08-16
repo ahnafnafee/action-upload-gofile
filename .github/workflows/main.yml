@@ -32,7 +32,7 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Upload File
-              uses: ahnafnafee/action-upload-gofile@v2
+              uses: ahnafnafee/action-upload-gofile@v2.0.1
               id: gofile
               with:
                   token: ${{ secrets.GOFILE_TOKEN }}
