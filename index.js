@@ -6,6 +6,7 @@ async function run() {
         const parameters = {
             token: core.getInput("token"),
             path: core.getInput("file"),
+            serverName: core.getInput("serverName"),
         };
 
         const gofileCommand = new Gofile(parameters)
