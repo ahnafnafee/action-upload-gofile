@@ -60,7 +60,7 @@ The following are _required_ as `step.env` keys
 steps:
     - name: Upload File
       id: gofile
-      uses: ahnafnafee/action-upload-gofile@v2.0.1
+      uses: ahnafnafee/action-upload-gofile@v2.1.0
       with:
           token: ${{ secrets.GOFILE_TOKEN }}
           file: ./example.webp

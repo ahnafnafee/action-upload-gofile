@@ -10,8 +10,9 @@ const FormData = __nccwpck_require__(4334);
 const util = __nccwpck_require__(1669);
 const EventEmitter = __nccwpck_require__(8614).EventEmitter;
 
-const UPLOAD_URL = "https://store1.gofile.io/uploadFile";
-const LINK_PREFIX = "https://store1.gofile.io/download/";
+let DEFAULT_SERVER = "store2";
+const UPLOAD_URL = `https://${DEFAULT_SERVER}.gofile.io/uploadFile`;
+const LINK_PREFIX = `https://${DEFAULT_SERVER}.gofile.io/download/`;
 const QR_API = "https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=";
 const POLL_MAX_COUNT = 10;
 const POLL_INTERVAL = 2;
@@ -32,6 +33,9 @@ const Gofile = function (parameters) {
     if (!fs.existsSync(this.path)) {
         throw new Error("Could not find file at " + this.path);
     }
+
+    this.serverName = parameters.serverName.trim();
+    DEFAULT_SERVER = this.serverName ?? DEFAULT_SERVER;
 
     // Create the required form fields
     this.formData = {
@@ -9089,6 +9093,7 @@ async function run() {
         const parameters = {
             token: core.getInput("token"),
             path: core.getInput("file"),
+            serverName: core.getInput("serverName"),
         };
 
         const gofileCommand = new Gofile(parameters)
